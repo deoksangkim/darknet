@@ -157,6 +157,9 @@ void resize_batchnorm_layer(layer *l, int w, int h)
     l->output = (float*)realloc(l->output, output_size * sizeof(float));
     l->delta = (float*)realloc(l->delta, output_size * sizeof(float));
 
+    l->x = (float*)realloc(l->x, output_size * sizeof(float));
+    l->x_norm = (float*)realloc(l->x_norm, output_size * sizeof(float));
+
 #ifdef GPU
     cuda_free(l->output_gpu);
     l->output_gpu = cuda_make_array(l->output, output_size);
